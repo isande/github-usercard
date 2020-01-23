@@ -62,6 +62,7 @@ const cardCreator = (gitObj) => {
 
   card.appendChild(pfp);
   card.appendChild(cardInfo);
+
   cardInfo.appendChild(realName);
   cardInfo.appendChild(gitName);
   cardInfo.appendChild(location);
@@ -69,6 +70,7 @@ const cardCreator = (gitObj) => {
   cardInfo.appendChild(followers);
   cardInfo.appendChild(following);
   cardInfo.appendChild(bio);
+
   profile.appendChild(profileLink);
 
   card.classList.add('card');
@@ -101,8 +103,20 @@ axios.get('https://api.github.com/users/isande')
     console.log('An error occurred!', err);
   });
 
+function getData(arr) {
+  arr.forEach(user => {
+  axios.get(`https://api.github.com/users/${user}`)
+    .then( response => {
+      console.log(response.data);
+      cards.appendChild(cardCreator(response.data));
+    })
+    .catch ( err => {
+      console.log('An error occurred!', err);
+    });
+  });
+};
 
-
+getData(followersArray);
 
 /* List of LS Instructors Github username's:
   tetondan
