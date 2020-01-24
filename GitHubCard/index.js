@@ -60,6 +60,22 @@ const cardCreator = (gitObj) => {
   const following = document.createElement('p');
   const bio = document.createElement('p');
 
+  card.classList.add('card');
+  cardInfo.classList.add('card-info');
+  realName.classList.add('name');
+  gitName.classList.add('username');
+
+  pfp.src = gitObj.avatar_url;
+  realName.textContent = gitObj.name;
+  gitName.textContent = gitObj.login;
+  location.textContent = `Location: ${gitObj.location}`;
+  profile.textContent = `Profile: `;
+  profileLink.textContent = gitObj.html_url;
+  profileLink.href = gitObj.html_url;
+  followers.textContent = `Followers: ${gitObj.followers}`;
+  following.textContent = `Following: ${gitObj.following}`;
+  bio.textContent = `Bio: ${gitObj.bio}`;
+
   card.appendChild(pfp);
   card.appendChild(cardInfo);
 
@@ -72,22 +88,6 @@ const cardCreator = (gitObj) => {
   cardInfo.appendChild(bio);
 
   profile.appendChild(profileLink);
-
-  card.classList.add('card');
-  cardInfo.classList.add('card-info');
-  realName.classList.add('name');
-  gitName.classList.add('username');
-
-  pfp.src = gitObj.avatar_url;
-  realName.textContent = gitObj.name;
-  gitName.textContent = gitObj.login;
-  location.textContent = `Location: ${gitObj.location}`;
-  profile.textContent = "Profile: ";
-  profileLink.textContent = gitObj.html_url;
-  profileLink.href = gitObj.html_url;
-  followers.textContent = `Followers: ${gitObj.followers}`;
-  following.textContent = `Following: ${gitObj.following}`;
-  bio.textContent = `Bio: ${gitObj.bio}`;
 
   return card;
 };
